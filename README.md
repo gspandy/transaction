@@ -8,7 +8,8 @@
   该框架在设计时就考虑到大型分布式的应用场景，因此框架支持对于dubbo单个模块的集群化。并且TxManager也支持集群化。
 
 关于框架的详细设计请见[txManager](https://github.com/1991wangliang/txManager)说明
-  
+
+可以用一句话来理解这个框架：就是给本地事务插上了一条网线。
 
    
 ## 框架使用教程
