@@ -15,9 +15,8 @@
 3. 通知事务
    
 
-关于框架的详细设计请见[txManager](https://github.com/1991wangliang/txManager)说明
+关于LCN框架的详细设计请见[txManager](https://github.com/1991wangliang/txManager)说明
 
-用一句话来理解这个框架：LCN绑架了本地事务,受TxManager统一控制。
 
    
 ## 框架使用教程
