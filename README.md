@@ -174,7 +174,7 @@ public class MQTestServiceImpl implements MQTestService {
 若存在业务方法A调用了业务方法B，当分布式事务注解添加在A上，那么整个A方法将被分布式事务所管理，若注解添加在B上，当调用A时将不会被启用分布式事务，尽当业务启动时的方法添加分布式事务注解时方可开启分布式事务注解。
 
 
-演示demo：
+演示demo：  
 spring-jdbc版本：
 [transaction_demo1](https://github.com/1991wangliang/transaction_demo1) [transaction_demo2](https://github.com/1991wangliang/transaction_demo2)   
 transaction_demo1是发起方，transaction_demo2是被调用方。
