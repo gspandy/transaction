@@ -3,7 +3,8 @@
   该框架依赖Redis／dubbo／[txManager](https://github.com/1991wangliang/txManager)服务。依赖第三方框架[lorne_core](https://github.com/1991wangliang/lorne_core)
   
 ## 原理与功能
-  基于对spring tx PlatformTransactionManager的本地模块事务控制从而达到全局控制事务的目的。该框架兼容任何依赖PlatformTransactionManager的DB框架。利用三阶段提交的方式来确保事务的一致性，支持本地事务和分布式事务框架共存，当方法进入的是本地事务方法，框架将不做任何分布式事务处理。当需要用到分布式事务的时候只需要在方法上添加分布式事务的注解即可。
+  基于对spring tx PlatformTransactionManager的本地模块事务控制从而达到全局控制事务的目的。该框架兼容任何依赖PlatformTransactionManager的DB框架。利用三阶段提交的方式来确保事务的一致性，支持本地事务和分布式事务框架共存，当方法进入的是本地事务方法，框架将不做任何分布式事务处理。当需要用到分布式事务的时候只需要在方法上添加分布式事务的注解即可。框架由于基于Spring本地事务做的封装，基本支持依赖spring的所有db框架。并在帖子底部提供了对springjdbc／hibernate／mybatis的演示demo。
+  
   
   该框架在设计时就考虑到大型分布式的应用场景，因此框架支持对于dubbo单个模块的集群化。并且TxManager也支持集群化。
   
@@ -179,6 +180,10 @@ spring-jdbc版本：
 [transaction_demo1](https://github.com/1991wangliang/transaction_demo1) [transaction_demo2](https://github.com/1991wangliang/transaction_demo2)   
 transaction_demo1是发起方，transaction_demo2是被调用方。
 
-hibernate版本：
+hibernate版本：  
 [transaction_hibernate_demo1](https://github.com/1991wangliang/transaction_hibernate_demo1) [transaction_hibernate_demo2](https://github.com/1991wangliang/transaction_hibernate_demo2)   
 transaction_hibernate_demo1是发起方，transaction_hibernate_demo2是被调用方。
+
+mybatis版本：  
+[transaction_mybatis_demo1](https://github.com/1991wangliang/transaction_mybatis_demo1) [transaction_mybatis_demo2](https://github.com/1991wangliang/transaction_mybatis_demo2)   
+transaction_mybatis_demo1是发起方，transaction_mybatis_demo2是被调用方。
