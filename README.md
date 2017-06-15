@@ -186,3 +186,5 @@ transaction_hibernate_demo1是发起方，transaction_hibernate_demo2是被调�
 mybatis版本：  
 [transaction_mybatis_demo1](https://github.com/1991wangliang/transaction_mybatis_demo1) [transaction_mybatis_demo2](https://github.com/1991wangliang/transaction_mybatis_demo2)   
 transaction_mybatis_demo1是发起方，transaction_mybatis_demo2是被调用方。
+
+QQ交流群：255825960
