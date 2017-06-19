@@ -5,7 +5,7 @@
 ## 原理与功能
   基于对spring tx PlatformTransactionManager的本地模块事务控制从而达到全局控制事务的目的。该框架兼容任何依赖PlatformTransactionManager的DB框架。利用三阶段提交的方式来确保事务的一致性，支持本地事务和分布式事务框架共存，当方法进入的是本地事务方法，框架将不做任何分布式事务处理。当需要用到分布式事务的时候只需要在方法上添加分布式事务的注解即可。框架由于基于Spring本地事务做的封装，基本支持依赖spring的所有db框架。并在帖子底部提供了对springjdbc／hibernate／mybatis的演示demo。
   
-  该框架属于强事务一致性框架。
+##### 该框架属于强事务一致性框架。
   
   该框架在设计时就考虑到大型分布式的应用场景，因此框架支持对于dubbo单个模块的集群化。并且TxManager也支持集群化。
   
@@ -17,6 +17,67 @@
    
 
 关于LCN框架的详细设计请见[txManager](https://github.com/1991wangliang/txManager)说明
+
+## 演示说明
+
+### dubbo消费者调用方
+ 
+
+```$xslt
+@Service
+public class TestServiceImpl implements TestService {
+
+
+    @Autowired
+    private TestDao testDao;//本地db层
+
+    @Autowired
+    private Test2Service test2Service;//dubbo服务方业务类
+
+
+    @Override
+    @TxTransaction  //分布式事务注解
+    public String hello() {
+
+        String name = "hello_demo1";
+        testDao.save(name);//执行本地db插入数据操作
+
+        String res =  test2Service.test();//调用远程db插入数据库操作
+
+        int v = 100/0;//模拟异常操作。该异常会回滚本地和远程的db事务操作
+        return res;
+    }
+
+}
+
+```
+
+### dubbo服务者提供方
+
+```$xslt
+@Service
+public class Test2ServiceImpl extends MQTransactionServiceImpl implements Test2Service {
+
+
+    @Autowired
+    private TestDao testDao;//本地db类
+
+
+
+    @Override
+    public String test() {
+
+        String name = "hello_demo2";
+
+        testDao.save(name);//本地db插入数据操作
+
+
+        return name;
+
+    }
+}
+
+```
 
 
    
